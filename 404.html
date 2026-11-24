@@ -8,7 +8,8 @@
 // 舊網址 jdgoodcar.github.io/jiade-car/... 轉到 jdgoodcar.com 的同一頁（保留車輛編號等參數）
 // 舊網址存的收藏（localStorage，跟這個轉址頁同一個網域）第一次轉過去時一起帶走：放在 #favimp=…，新網站讀到後合併
 (function () {
-  var p = location.pathname.replace(/^\/jiade-car(\/|$)/, '/');
+  // 直接轉到去掉 .html 的網址（不然 Cloudflare 會再轉一次，#favimp 可能在途中弄丟）
+  var p = location.pathname.replace(/^\/jiade-car(\/|$)/, '/').replace(/\/index\.html$/, '/').replace(/\.html$/, '');
   var url = 'https://jdgoodcar.com' + p + location.search;
   var hash = location.hash;
   try {
